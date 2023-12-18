@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+//创作者
 @Data
 @Entity
 public class Upload {
@@ -14,9 +15,11 @@ public class Upload {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 
+    //注册时间
     @Column(nullable = false)
     private Date CreatTime;
 
+    //注销时间
     private Date DeleteTime;
 
     @Column(nullable = false)
@@ -31,6 +34,7 @@ public class Upload {
     @Column(nullable = false)
     private String EMail;
 
+    //被关注数（粉丝数）
     @Column(nullable = false)
     private int FansNum;
 

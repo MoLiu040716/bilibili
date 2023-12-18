@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+//用户表
 @Data
 @Entity
 public class User {
@@ -15,8 +16,10 @@ public class User {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 
+    //用户名，可为空
     private String Username;
 
+    //密码
     @Column(nullable = false)
     private String Password;
 
@@ -25,11 +28,14 @@ public class User {
 
     private String EMail;
 
+    //用户注册时间
     @Column(nullable = false)
     private Date CreatTime;
 
+    //用户注销时间
     private Date DeleteTime;
 
+    //用户当前状态->0已注销；1正常；2状态异常
     @Column(nullable = false)
     private int AccountStatus;
 
@@ -37,8 +43,10 @@ public class User {
 
     private int Sex;
 
+    //头像
     private File ProfilePhoto;
 
+    //用户关注人数
     @Column(nullable = false)
     private int AttentionNum;
 

@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.util.Date;
 
+//弹幕表
 @Data
 @Entity
 public class BulletComments {
@@ -12,6 +13,7 @@ public class BulletComments {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 
+    //弹幕内容
     @Column(nullable = false)
     private String Content;
 
@@ -21,6 +23,7 @@ public class BulletComments {
     @Column(nullable = false)
     private Date DeleteTime;
 
+    //时间戳（弹幕是在视频的哪个时间点发送的）
     @Column(nullable = false)
     private int Timestamp;
 

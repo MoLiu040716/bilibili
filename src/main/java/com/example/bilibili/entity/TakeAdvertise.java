@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+//接广告表
 @Data
 @Entity
 public class TakeAdvertise {
@@ -18,6 +19,7 @@ public class TakeAdvertise {
     @Column(nullable = false)
     private Date TakeTime;
 
+    //进程（待开始、已发布广告、合作结束等）
     @Column(nullable = false)
     private int Progress;
 

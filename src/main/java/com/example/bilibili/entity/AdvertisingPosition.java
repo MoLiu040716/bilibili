@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+//广告位ID
 @Data
 @Entity
 public class AdvertisingPosition {
@@ -20,14 +21,17 @@ public class AdvertisingPosition {
     @Column(nullable = false)
     private String Introduction;
 
+    //广告开始招创作者的日期
     @Column(nullable = false)
     private Date BeginTime;
 
     private Date EndTime;
 
+    //报酬情况
     @Column(nullable = false)
     private Double Reward;
 
+    //项目当前进展情况->0筹备中；1已开始；2已结束；3状态异常（被举报）
     @Column(nullable = false)
     private int Process;
 

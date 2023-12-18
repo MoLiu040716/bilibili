@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.util.Date;
 
+//角色权限关联表
 @Data
 @Entity
 public class RoleAuthorization {

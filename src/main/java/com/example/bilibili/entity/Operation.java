@@ -6,6 +6,7 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
+//操作
 @Data
 @Entity
 public class Operation {

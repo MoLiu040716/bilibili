@@ -6,6 +6,7 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
+//回复表
 @Data
 @Entity
 public class Reply {
@@ -19,6 +20,7 @@ public class Reply {
     @Column(nullable = false)
     private String Content;
 
+    //被点赞数
     @Column(nullable = false)
     private int LikeNum;
 

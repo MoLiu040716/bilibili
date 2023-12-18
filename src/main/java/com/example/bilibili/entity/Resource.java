@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+//资源表
 @Data
 @Entity
 public class Resource {
@@ -22,35 +23,45 @@ public class Resource {
 
     private Date DeleteTime;
 
+    //存储在某个文件夹中，需要某个URL对应
     @Column(nullable = false)
     private String URL;
 
     @Column(nullable = false)
     private String Title;
 
+    //简介
     private String Introduction;
 
+    //视频大小
     @Column(nullable = false)
     private int FileSize;
 
+    //视频类型（mp4、mov）
     @Column(nullable = false)
     private String FileType;
 
+    //观看总数
     @Column(nullable = false)
     private int ViewCount;
 
+    //被点赞数
     @Column(nullable = false)
     private int LikeNum;
 
+    //视频时长
     @Column(nullable = false)
     private int Duration;
 
+    //创作者用户名
     @Column(nullable = false)
     private String UploaderName;
 
+    //弹幕总数
     @Column(nullable = false)
     private int BulletCommentNum;
 
+    //被收藏数
     @Column(nullable = false)
     private int CollectionNum;
 

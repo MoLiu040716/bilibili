@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+//管理员
 @Data
 @Entity
 public class Manager {

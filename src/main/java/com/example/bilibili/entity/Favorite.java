@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.util.Date;
 
+//收藏
 @Data
 @Entity
 public class Favorite {

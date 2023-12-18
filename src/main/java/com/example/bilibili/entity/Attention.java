@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.util.Date;
 
+//关注表
 @Data
 @Entity
 public class Attention {
@@ -19,6 +20,7 @@ public class Attention {
 
     private Date UpdateTime;
 
+    //当前状态->关注 or 已取关
     @Column(nullable = false)
     private int Status;
 }

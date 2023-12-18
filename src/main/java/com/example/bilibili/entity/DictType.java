@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+//字典
 @Data
 @Entity
 public class DictType {
@@ -14,12 +15,15 @@ public class DictType {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 
+    //对应表格
     @Column(nullable = false)
     private String Form;
 
+    //对应字段
     @Column(nullable = false)
     private String TheColumn;
 
+    //当前状态->0已停用，1正在使用
     @Column(nullable = false)
     private int Status;
 

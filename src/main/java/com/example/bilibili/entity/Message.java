@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+//站内信
 @Data
 @Entity
 public class Message {
@@ -20,12 +21,15 @@ public class Message {
     @Column(nullable = false)
     private String Content;
 
+    //站内信推送时间
     @Column(nullable = false)
     private Date PostTime;
 
+    //记录收件人总人数，根据点击数计算点击率
     @Column(nullable = false)
     private int Total;
 
+    //记录点击数
     @Column(nullable = false)
     private  int Click;
 

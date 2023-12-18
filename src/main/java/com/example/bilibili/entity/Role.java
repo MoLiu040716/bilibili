@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+//角色
 @Data
 @Entity
 public class Role {
@@ -17,6 +18,7 @@ public class Role {
     @Column(nullable = false)
     private String Name;
 
+    //备注
     private String Remark;
 
     @Column(nullable = false)

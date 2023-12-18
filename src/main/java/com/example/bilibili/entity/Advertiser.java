@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+//广告主
 @Data
 @Entity
 public class Advertiser {
@@ -14,9 +15,11 @@ public class Advertiser {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 
+    //注册时间
     @Column(nullable = false)
     private Date CreatTime;
 
+    //注销时间
     private Date DeleteTime;
 
     private String UserName;

@@ -3,6 +3,7 @@ package com.example.bilibili.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+//评论
 @Data
 @Entity
 public class Comment {
@@ -13,12 +14,15 @@ public class Comment {
     @Column(nullable = false)
     private String UserName;
 
+    //评论内容
     @Column(nullable = false)
     private String Content;
 
+    //回复数
     @Column(nullable = false)
     private int ReplyNum = 0;
 
+    //点赞数
     @Column(nullable = false)
     private int LikeNum = 0;
 

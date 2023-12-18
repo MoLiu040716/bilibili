@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.util.Date;
 
+//权限和操作的关联表
 @Data
 @Entity
 public class AuthorizationOperation {

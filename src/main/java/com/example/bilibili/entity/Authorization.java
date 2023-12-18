@@ -6,6 +6,7 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
+//权限
 @Data
 @Entity
 public class Authorization {
@@ -16,6 +17,7 @@ public class Authorization {
     @Column(nullable = false)
     private String Name;
 
+    //权限备注
     private String Remark;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

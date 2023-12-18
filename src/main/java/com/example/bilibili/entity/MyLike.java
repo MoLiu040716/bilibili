@@ -12,9 +12,11 @@ public class MyLike {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 
+    //目标类型（视频、评论、回复、弹幕）
     @Column(nullable = false)
     private int TargetType;
 
+    //目标ID
     @Column(nullable = false)
     private int TargetID;
 
@@ -23,6 +25,7 @@ public class MyLike {
 
     private Date UpdateTime;
 
+    //当前状态（已下线、正常）
     @Column(nullable = false)
     private int Status;
 

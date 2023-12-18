@@ -8,6 +8,7 @@ import lombok.Data;
 
 import java.util.Date;
 
+//广告点击日志
 @Data
 @Entity
 public class AdvertiseClick {
@@ -19,6 +20,7 @@ public class AdvertiseClick {
     @Column(nullable = false)
     private Date ClickTime;
 
+    //点击后，在页面停留的时长
     @Column(nullable = false)
     private int ViewingDuration;
 }
