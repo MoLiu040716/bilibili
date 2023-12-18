@@ -9,9 +9,9 @@ import java.util.Date;
 @Entity
 public class AuthorizationOperation {
     @Id
-    private int AuthorizationID;
+    private int authorization_id;
     @Id
-    private int OperationID;
+    private int operation_id;
 
     @Column(nullable = false)
     private Date CreatTime;

@@ -11,10 +11,10 @@ import java.util.Date;
 @Entity
 public class UploadMassage {
     @Id
-    private int MessageID;
+    private int message_id;
 
     @Id
-    private int UploadID;
+    private int upload_id;
 
     @Column(nullable = false)
     private int Status = 0;

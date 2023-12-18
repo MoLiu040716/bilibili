@@ -12,9 +12,9 @@ import java.util.Date;
 @Entity
 public class AdvertiseClick {
     @Id
-    private int TakeAdvertiseID;
+    private int take_advertise_id;
     @Id
-    private int UserID;
+    private int user_id;
 
     @Column(nullable = false)
     private Date ClickTime;

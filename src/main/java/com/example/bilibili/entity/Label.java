@@ -21,6 +21,6 @@ public class Label {
     private List<Label> labels = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "parent_id")
+    @JoinColumn(name = "label_id")
     private List<LabelAssociation> labelAssociations = new ArrayList<>();
 }

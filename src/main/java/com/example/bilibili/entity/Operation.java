@@ -19,6 +19,6 @@ public class Operation {
     private String Remark;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "operator_id")
+    @JoinColumn(name = "operation_id")
     private List<AuthorizationOperation> authorizationOperations = new ArrayList<>();
 }

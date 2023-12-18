@@ -51,6 +51,6 @@ public class Upload {
     private List<UploadMassage> uploadMassages = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "position_id")
+    @JoinColumn(name = "upload_id")
     private List<TakeAdvertise> takeAdvertises = new ArrayList<>();
 }

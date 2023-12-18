@@ -35,9 +35,9 @@ public class AdvertisingPosition {
     @JoinColumn(name = "advertiser_id")
     private Advertiser advertiser;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "advertising_position_id")
-    private Message message;
+    private List<Message> messages = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "position_id")

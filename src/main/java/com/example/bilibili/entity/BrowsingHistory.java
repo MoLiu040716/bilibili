@@ -11,9 +11,9 @@ import java.util.Date;
 @Entity
 public class BrowsingHistory {
     @Id
-    private int UserID;
+    private int user_id;
     @Id
-    private int ResourceID;
+    private int resource_id;
 
     @Column(nullable = false)
     private Date BrowsingTime;
