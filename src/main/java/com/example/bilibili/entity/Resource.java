@@ -34,11 +34,9 @@ public class Resource {
     private String Introduction;
 
     //视频大小
-    @Column(nullable = false)
     private int FileSize;
 
     //视频类型（mp4、mov）
-    @Column(nullable = false)
     private String FileType;
 
     //观看总数
