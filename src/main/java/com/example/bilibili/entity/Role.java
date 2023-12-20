@@ -33,4 +33,6 @@ public class Role {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "role_id")
     private List<RoleAuthorization> roleAuthorizations = new ArrayList<>();
+
+//    testOne
 }
