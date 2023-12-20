@@ -8,7 +8,7 @@ import lombok.Data;
 
 import java.util.Date;
 
-//广告点击日志
+//广告点击日志表
 @Data
 @Entity
 public class AdvertiseClick {

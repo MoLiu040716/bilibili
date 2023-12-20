@@ -6,8 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface ResourceMapper {
-    @Insert("INSERT INTO Resource (id,CreatTime, UpdateTime, URL, Title, Introduction, FileSize, FileType, UploaderName) " +
-            "VALUES (#{id},#{CreatTime}, #{UpdateTime}, #{URL}, #{Title}, #{Introduction}, #{FileSize}, #{FileType},  #{Duration}, #{UploaderName})")
+    @Insert("INSERT INTO Resource (CreatTime, UpdateTime, URL, Title, Introduction, FileSize, FileType, UploaderName) " +
+            "VALUES (#{CreatTime}, #{UpdateTime}, #{URL}, #{Title}, #{Introduction}, #{FileSize}, #{FileType},  #{Duration}, #{UploaderName})")
     boolean uploadVideo(Resource video);
 
 }

@@ -27,7 +27,6 @@ public class VideoController {
 
     @RequestMapping("/uploadVideo")
     public boolean uploadVideo(@RequestParam("file") MultipartFile file,
-                               @RequestParam Integer ID,
                                @RequestParam String title,
                                @RequestParam String description,
                                @RequestParam Integer creatorID,
@@ -39,7 +38,6 @@ public class VideoController {
         Time uploadTime=new Time(System.currentTimeMillis());
         Integer size= Math.toIntExact(file.getSize());//存储的视频最大为2GB！！！！！！
 
-        video.setId(ID);
         video.setTitle(title);
         video.setCreatTime(uploadTime);
         video.setUpdateTime(uploadTime);
