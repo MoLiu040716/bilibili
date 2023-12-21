@@ -1,16 +1,18 @@
 package com.example.bilibili.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+@Data
 @Entity
 public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     //用户名，可为空
     private String UserName;
