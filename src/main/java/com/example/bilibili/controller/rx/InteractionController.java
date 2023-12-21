@@ -13,23 +13,15 @@ import java.util.Map;
 public class InteractionController {
     @Autowired
     private InteractionService interactionService;
-
+    @RequestMapping("/commentByResourseAndUserId")
+    @ResponseBody
+    public int commentByResourseAndUserId(Integer resourceID, Integer userID, String comment){
+        return interactionService.commentByResourseAndUserId(resourceID,userID,comment);
+    }
     @RequestMapping("/getCommentsAndRepliesByResourceId")
     @ResponseBody
     public List<Map<String, Object>> getCommentsAndRepliesByResourceId(Integer id){
         return interactionService.getCommentsAndRepliesByResourceId(id);
-    }
-    @RequestMapping("/commentByResourseAndUserId")
-    @ResponseBody
-    public String commentByResourseAndUserId(@RequestParam Integer resourceID,
-                                             @RequestParam Integer userID,
-                                             @RequestParam String comment){
-        int result = interactionService.commentByResourseAndUserId(resourceID,userID,comment);
-        if(result==1){
-            return "评论发布成功";
-        }else{
-            return "评论发布失败";
-        }
     }
 
     //    回复评论
