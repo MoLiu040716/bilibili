@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/VideoController")
+@CrossOrigin
 public class VideoController {
 
     @Autowired
@@ -31,6 +32,8 @@ public class VideoController {
                                @RequestParam String description,
                                @RequestParam Integer creatorID,
                                @RequestParam String creatorName) throws Exception{
+        System.out.println(file.getClass());
+        System.out.println(title);
         Resource video=new Resource();
         String path="E:\\VIDEO";
         String fileName = file.getOriginalFilename();
