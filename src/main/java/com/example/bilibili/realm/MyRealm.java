@@ -34,7 +34,7 @@ public class MyRealm extends AuthorizingRealm {
         // 3非空判断，将数据封装返回
         if(user != null){
             AuthenticationInfo info = new SimpleAuthenticationInfo(
-                    authenticationToken.getPrincipal(),
+                    user,
                     user.getPassword(),
                     ByteSource.Util.bytes("salt"),
                     authenticationToken.getPrincipal().toString()
