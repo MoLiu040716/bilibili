@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/CreatorToolController")
+@CrossOrigin
 public class CreatorToolController {
 
     @Autowired
