@@ -33,11 +33,11 @@ public interface InteractionMapper {
     List<Map<String, Object>> getCommentsByResourceId(Integer id);
 
     @Insert("INSERT INTO comment (content, user_id, resource_id,like_num,reply_num, user_name)" +
-            "VALUES (#{comment}, #{userID}, #{resourceID} ,0,0,(SELECT username FROM user WHERE id = #{userID} LIMIT 1))")
+            "VALUES (#{comment}, #{userID}, #{resourceID} ,0,0,(SELECT user_name FROM user WHERE id = #{userID} LIMIT 1))")
     int commentByResourseAndUserId(Integer resourceID, Integer userID, String comment);
 
     @Insert("INSERT INTO reply (content, user_id, comment_id,like_num, user_name)" +
-            "VALUES (#{reply}, #{userID}, #{commentID} ,0,(SELECT username FROM user WHERE id = #{userID} LIMIT 1))")
+            "VALUES (#{reply}, #{userID}, #{commentID} ,0,(SELECT user_name FROM user WHERE id = #{userID} LIMIT 1))")
     int replyForCommentByUserId(Integer commentID, Integer userID, String reply);
 
 
@@ -45,7 +45,7 @@ public interface InteractionMapper {
     void setCommentId(Integer replyID);
     @Insert("INSERT INTO reply (content, user_id, like_num, parent_id, comment_id, user_name) " +
             "VALUES (#{reply}, #{userID}, 0, #{replyID}, @comment_id, " +
-            "(SELECT username FROM user WHERE id = #{userID} LIMIT 1));")
+            "(SELECT user_name FROM user WHERE id = #{userID} LIMIT 1));")
     int replyForReplyByUserId(Integer replyID, Integer userID, String reply);
     @Update("UPDATE comment SET like_num = like_num + 1 WHERE id = #{id}")
     int addLikeForComment(Integer id);

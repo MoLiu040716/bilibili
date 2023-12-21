@@ -13,7 +13,7 @@ public class User {
     private int id;
 
     //用户名，可为空
-    private String Username;
+    private String UserName;
 
     //密码
     @Column(nullable = false)

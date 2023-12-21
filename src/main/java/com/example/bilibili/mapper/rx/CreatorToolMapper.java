@@ -8,6 +8,6 @@ import java.util.Map;
 
 @Mapper
 public interface CreatorToolMapper {
-    @Select("SELECT Title, ViewCount, LikeNum, LikeNum / ViewCount AS LikeRate, LikeNum * 0.01 AS Earnings FROM Resource WHERE id = id")
+    @Select("SELECT title, view_count, like_num, like_num / view_count AS like_rate, like_num * 0.01 AS earnings FROM Resource WHERE id = id")
     List<Map<String, Object>> getVideosByCreatorId(Integer id);
 }
