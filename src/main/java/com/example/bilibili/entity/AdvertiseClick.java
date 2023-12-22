@@ -16,8 +16,7 @@ public class AdvertiseClick {
     private int take_advertise_id;
     @Id
     private int user_id;
-
-    @Column(nullable = false)
+    @Id
     private Date ClickTime;
 
     //点击后，在页面停留的时长
