@@ -10,6 +10,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,13 +57,18 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/getAllUsers")
-    public Map<Integer, String> getAllUsers(){
-        Map<Integer, String> result = new HashMap<>();
-
+    public List<Map<String, Object>> getAllUsers(){
+        List<Map<String, Object>> result = new ArrayList<>();
         List<User> userList = userService.getAllUsers();
+
         // 遍历用户列表，将用户ID和用户名添加到结果Map中
         for (User user : userList) {
-            result.put(user.getId(), user.getUserName());
+            Map<String, Object> oneUser = new HashMap<>();
+            int userId = user.getId();
+            String user_name = user.getUserName();
+            oneUser.put("userId", userId);
+            oneUser.put("username", user_name);
+            result.add(oneUser);
         }
 
         return result;
