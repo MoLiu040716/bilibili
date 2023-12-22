@@ -13,10 +13,15 @@ import java.util.Date;
 @Entity
 public class AdvertiseClick {
     @Id
+    private int id;
+
+    @Column(nullable = false)
     private int take_advertise_id;
-    @Id
+
+    @Column(nullable = false)
     private int user_id;
-    @Id
+
+    @Column(nullable = false)
     private Date ClickTime;
 
     //点击后，在页面停留的时长
