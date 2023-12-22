@@ -41,7 +41,7 @@ public class InteractionController {
     public String replyForCommentByUserId(@RequestParam Integer commentID,
                                           @RequestParam Integer userID,
                                           @RequestParam String reply){
-        // 使用过滤类进行评论过滤
+        // 使用过滤类进行回复过滤
         String filteredReply = BadWordsFilter.filterComment(reply);
 
         int result = interactionService.replyForCommentByUserId(commentID,userID,filteredReply);
@@ -58,7 +58,7 @@ public class InteractionController {
     public String replyForReplyByUserId(@RequestParam Integer replyID,
                                         @RequestParam Integer userID,
                                         @RequestParam String reply){
-        // 使用过滤类进行评论过滤
+        // 使用过滤类进行回复的回复过滤
         String filteredReplyForReply = BadWordsFilter.filterComment(reply);
 
         int result = interactionService.replyForReplyByUserId(replyID,userID,filteredReplyForReply);
