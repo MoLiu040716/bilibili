@@ -14,12 +14,6 @@ import java.util.Map;
 public class InteractionController {
     @Autowired
     private InteractionService interactionService;
-
-    @RequestMapping("/getCommentsAndRepliesByResourceId")
-    @ResponseBody
-    public List<Map<String, Object>> getCommentsAndRepliesByResourceId(Integer id){
-        return interactionService.getCommentsAndRepliesByResourceId(id);
-    }
     @RequestMapping("/commentByResourseAndUserId")
     @ResponseBody
     public String commentByResourseAndUserId(@RequestParam Integer resourceID,
@@ -35,6 +29,11 @@ public class InteractionController {
             return "评论发布失败";
         }
     }
+    @RequestMapping("/getCommentsAndRepliesByResourceId")
+    @ResponseBody
+    public List<Map<String, Object>> getCommentsAndRepliesByResourceId(Integer id){
+        return interactionService.getCommentsAndRepliesByResourceId(id);
+    }
 
     //    回复评论
     @RequestMapping("/replyForCommentByUserId")
@@ -42,10 +41,7 @@ public class InteractionController {
     public String replyForCommentByUserId(@RequestParam Integer commentID,
                                           @RequestParam Integer userID,
                                           @RequestParam String reply){
-        // 使用过滤类进行回复过滤
-        String filteredReply = BadWordsFilter.filterComment(reply);
-
-        int result = interactionService.replyForCommentByUserId(commentID,userID,filteredReply);
+        int result = interactionService.replyForCommentByUserId(commentID,userID,reply);
         if(result==1){
             return "回复发布成功";
         }else{
@@ -59,10 +55,7 @@ public class InteractionController {
     public String replyForReplyByUserId(@RequestParam Integer replyID,
                                         @RequestParam Integer userID,
                                         @RequestParam String reply){
-        // 使用过滤类进行回复的回复过滤
-        String filteredReplyForReply = BadWordsFilter.filterComment(reply);
-
-        int result = interactionService.replyForReplyByUserId(replyID,userID,filteredReplyForReply);
+        int result = interactionService.replyForReplyByUserId(replyID,userID,reply);
         if(result==1){
             return "回复成功";
         }else{
