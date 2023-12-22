@@ -33,11 +33,9 @@ public class Report {
     private File Attachment;
 
     //处理结果（通过、不通过等）
-    @Column(nullable = false)
     private int Result;
 
     //理由
-    @Column(nullable = false)
     private String Remark;
 
     @ManyToOne(cascade = CascadeType.ALL)

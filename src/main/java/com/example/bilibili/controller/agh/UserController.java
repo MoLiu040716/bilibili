@@ -31,11 +31,11 @@ public class UserController {
                 if (principal instanceof User) {
                     User user = (User) principal;
                     int userId = user.getId();
-                    String username = user.getUserName();
+                    String user_name = user.getUserName();
 
                     // 封装用户信息到Map
                     result.put("userId", userId);
-                    result.put("username", username);
+                    result.put("username", user_name);
                     return result;
                 }
             }
@@ -45,8 +45,7 @@ public class UserController {
             result.put("error", "用户名或密码错误");
             return result;
         }
-
-        result.put("error", "未知错误");
+        result.put("error", "发生错误");
         return result;
     }
 }

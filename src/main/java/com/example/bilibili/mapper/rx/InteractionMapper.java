@@ -8,7 +8,6 @@ import java.util.Map;
 @Mapper
 public interface InteractionMapper {
 
-
     @Select("SELECT " +
             "    r.content AS replyContent, " +
             "    r.like_num AS replyLikeNum, " +
