@@ -13,8 +13,12 @@ import java.util.Date;
 @Entity
 public class AdvertiseClick {
     @Id
+    private int id;
+
+    @Column(nullable = false)
     private int take_advertise_id;
-    @Id
+
+    @Column(nullable = false)
     private int user_id;
 
     @Column(nullable = false)

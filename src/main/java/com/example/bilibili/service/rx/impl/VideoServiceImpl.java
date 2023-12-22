@@ -2,7 +2,6 @@ package com.example.bilibili.service.rx.impl;
 
 import com.example.bilibili.entity.Resource;
 import com.example.bilibili.mapper.rx.ResourceMapper;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

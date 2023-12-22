@@ -38,7 +38,8 @@ public class InteractionServiceImpl implements InteractionService {
                 if (parentCommentId != null && parentCommentId.equals(commentId)) {
                     Map<String, Object> replyObject = new HashMap<>();
                     replyObject.put("Type", "reply");
-                    replyObject.put("replyID", reply.get("replyID"));
+                    replyObject.put("commentID", reply.get("parentCommentId"));
+                    replyObject.put("parentID", reply.get("parentId"));
                     replyObject.put("replyContent", reply.get("replyContent"));
                     replyObject.put("replyLikeNum", reply.get("replyLikeNum"));
                     replyObject.put("replyID", reply.get("replyID"));

@@ -13,6 +13,7 @@ public interface InteractionMapper {
             "    r.like_num AS replyLikeNum, " +
             "    r.comment_id AS parentCommentId, " +
             "    r.id AS replyId, " +
+            "    r.parent_id AS parentId, " +
             "    COALESCE(r.parent_id, c.id) AS replyID, " +
             "    CASE " +
             "        WHEN r.parent_id IS NULL THEN 'Comment' " +
