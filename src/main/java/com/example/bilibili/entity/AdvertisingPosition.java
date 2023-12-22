@@ -27,6 +27,9 @@ public class AdvertisingPosition {
 
     private Date EndTime;
 
+    @Column(nullable = false)
+    private int ShowNum;
+
     //报酬情况
     @Column(nullable = false)
     private Double Reward;
