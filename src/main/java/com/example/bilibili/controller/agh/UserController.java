@@ -1,14 +1,17 @@
 package com.example.bilibili.controller.agh;
 
 import com.example.bilibili.entity.User;
+import com.example.bilibili.service.agh.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -46,6 +49,22 @@ public class UserController {
             return result;
         }
         result.put("error", "发生错误");
+        return result;
+    }
+
+    @Autowired
+    private UserService userService;
+
+    @GetMapping("/getAllUsers")
+    public Map<Integer, String> getAllUsers(){
+        Map<Integer, String> result = new HashMap<>();
+
+        List<User> userList = userService.getAllUsers();
+        // 遍历用户列表，将用户ID和用户名添加到结果Map中
+        for (User user : userList) {
+            result.put(user.getId(), user.getUserName());
+        }
+
         return result;
     }
 }
