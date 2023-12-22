@@ -41,7 +41,10 @@ public class InteractionController {
     public String replyForCommentByUserId(@RequestParam Integer commentID,
                                           @RequestParam Integer userID,
                                           @RequestParam String reply){
-        int result = interactionService.replyForCommentByUserId(commentID,userID,reply);
+        // 使用过滤类进行评论过滤
+        String filteredReply = BadWordsFilter.filterComment(reply);
+
+        int result = interactionService.replyForCommentByUserId(commentID,userID,filteredReply);
         if(result==1){
             return "回复发布成功";
         }else{
@@ -55,7 +58,10 @@ public class InteractionController {
     public String replyForReplyByUserId(@RequestParam Integer replyID,
                                         @RequestParam Integer userID,
                                         @RequestParam String reply){
-        int result = interactionService.replyForReplyByUserId(replyID,userID,reply);
+        // 使用过滤类进行评论过滤
+        String filteredReplyForReply = BadWordsFilter.filterComment(reply);
+
+        int result = interactionService.replyForReplyByUserId(replyID,userID,filteredReplyForReply);
         if(result==1){
             return "回复成功";
         }else{
