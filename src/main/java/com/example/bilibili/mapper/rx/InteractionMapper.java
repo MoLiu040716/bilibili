@@ -8,7 +8,6 @@ import java.util.Map;
 @Mapper
 public interface InteractionMapper {
 
-
     @Select("SELECT " +
             "    r.content AS replyContent, " +
             "    r.like_num AS replyLikeNum, " +
@@ -43,10 +42,12 @@ public interface InteractionMapper {
 
     @Update("SET @comment_id := (SELECT comment_id FROM reply WHERE id = #{replyID} LIMIT 1)")
     void setCommentId(Integer replyID);
+
     @Insert("INSERT INTO reply (content, user_id, like_num, parent_id, comment_id, user_name) " +
             "VALUES (#{reply}, #{userID}, 0, #{replyID}, @comment_id, " +
             "(SELECT user_name FROM user WHERE id = #{userID} LIMIT 1));")
     int replyForReplyByUserId(Integer replyID, Integer userID, String reply);
+
     @Update("UPDATE comment SET like_num = like_num + 1 WHERE id = #{id}")
     int addLikeForComment(Integer id);
 
