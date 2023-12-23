@@ -2,6 +2,8 @@ package com.example.bilibili.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -36,6 +38,12 @@ public class Upload {
     //被关注数（粉丝数）
     @Column(nullable = false)
     private int FansNum;
+
+    //用户当前状态->0已注销；1正常；2状态异常
+    @Column(nullable = false)
+    private int AccountStatus;
+
+    private Timestamp RecoveryTime;
 
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "upload_id")

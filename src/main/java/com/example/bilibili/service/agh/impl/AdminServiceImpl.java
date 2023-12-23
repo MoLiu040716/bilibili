@@ -6,6 +6,8 @@ import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+
 @Service
 public class AdminServiceImpl implements AdminService {
     @Autowired
@@ -29,5 +31,15 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public int examineReportByReportIdAndManagerId(Integer ManagerId, Integer ReportId, String remark, Integer result) {
         return adminMapper.examineReportByReportIdAndManagerId(ManagerId, ReportId, remark, result);
+    }
+
+    @Override
+    public int freezeUser(String userId, Timestamp recoveryTime) {
+        return adminMapper.freezeUser(userId, recoveryTime);
+    }
+
+    @Override
+    public int freezeUploader(String uploaderId, Timestamp recoveryTime) {
+        return adminMapper.freezeUploader(uploaderId, recoveryTime);
     }
 }

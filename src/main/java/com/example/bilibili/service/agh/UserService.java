@@ -9,4 +9,6 @@ public interface UserService {
     public User getUserInfoByName(String name);
 
     public List<User> getAllUsers();
+
+    public int updateUserStatus(Integer id);
 }

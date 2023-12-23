@@ -3,6 +3,7 @@ package com.example.bilibili.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,6 +29,8 @@ public class Advertiser {
 
     @Column(nullable = false)
     private String Password;
+
+    private Timestamp RecoveryTime;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "advertiser_id")

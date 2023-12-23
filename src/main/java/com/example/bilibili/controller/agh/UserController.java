@@ -57,8 +57,8 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/getAllUsers")
-    public List<Map<String, Object>> getAllUsers(){
-        List<Map<String, Object>> result = new ArrayList<>();
+    public List<Object> getAllUsers() {
+        List<Object> result = new ArrayList<>();
         List<User> userList = userService.getAllUsers();
 
         // 遍历用户列表，将用户ID和用户名添加到结果Map中
