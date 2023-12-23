@@ -9,4 +9,8 @@ public interface UserService {
     public User getUserInfoByName(String name);
 
     public List<User> getAllUsers();
+
+    public int updateUserStatus(Integer id);
+
+    public int updatePassword(String username, String oldPassword, String newPassword);
 }

@@ -2,6 +2,8 @@ package com.example.bilibili.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,7 +27,7 @@ public class Upload {
     @Column(nullable = false)
     private int AccountStatus;
 
-    private Date RecoveryTime;
+    private Timestamp RecoveryTime;
 
     @Column(nullable = false)
     private String UserName;
