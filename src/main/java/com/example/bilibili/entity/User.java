@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.io.File;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -37,7 +38,7 @@ public class User {
     @Column(nullable = false)
     private int AccountStatus;
 
-    private Date RecoveryTime;
+    private Timestamp RecoveryTime;
 
     private Date Birthday;
 
