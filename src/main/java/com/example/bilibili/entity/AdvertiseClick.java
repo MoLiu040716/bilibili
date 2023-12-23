@@ -1,8 +1,6 @@
 package com.example.bilibili.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
@@ -12,6 +10,7 @@ import java.util.Date;
 @Entity
 public class AdvertiseClick {
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
 
     @Column(nullable = false)

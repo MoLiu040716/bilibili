@@ -47,16 +47,21 @@ public class AdvertiseController {
         return advertiseService.uploadAdvertise(advertise);
     }
 
-    @GetMapping("/getAdvertise")
+    @GetMapping("/getAdvertiseForUploaders")
     @ResponseBody
-    public List<Map<String, Object>> getAdvertise(@RequestParam Integer ad_id){
+    public List<Map<String, Object>> getAdvertiseForUploaders(@RequestParam Integer ad_id){
         return advertiseService.getAdvertise(ad_id);
     }
     @GetMapping("/clickAdvertise")
     @ResponseBody
     public int clickAdvertise(@RequestParam Integer UserID,
-                              @RequestParam Integer TakeAdvertiseID,
-                              @RequestParam Date ClickTime){
+                              @RequestParam Integer TakeAdvertiseID) {
+        Date ClickTime=new Date();
         return advertiseService.clickAdvertise(UserID,TakeAdvertiseID,ClickTime);
+    }
+    @GetMapping("/closeAdvertise")
+    @ResponseBody
+    public int closeAdvertise(Integer ClickID){
+        return advertiseService.closeAdvertise(ClickID);
     }
 }

@@ -23,4 +23,17 @@ public class TimeTools {
             return 1;
         }
     }
+
+    //重载方法
+    public static int getActivityProcess(Date bgTime, Date edTime) {
+        Date currentTime = new Date();
+        if (currentTime.before(bgTime)) {
+            return 0;
+        } else if (currentTime.after(edTime)) {
+            return 2;
+        } else {
+            return 1;
+        }
+    }
+
 }

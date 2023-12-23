@@ -1,5 +1,6 @@
 package com.example.bilibili.service.rx.impl;
 
+import com.example.bilibili.entity.AdvertiseClick;
 import com.example.bilibili.entity.AdvertisingPosition;
 import com.example.bilibili.mapper.rx.AdvertiseMapper;
 import com.example.bilibili.service.rx.AdvertiseService;
@@ -28,7 +29,17 @@ public class AdvertiseServiceImpl implements AdvertiseService {
     }
 
     @Override
-    public int clickAdvertise(Integer UserID, Integer TakeAdvertiseID, Date ClickTime){
-        return advertiseMapper.clickAdvertise(UserID,TakeAdvertiseID,ClickTime);
+    public int clickAdvertise( Integer UserID, Integer TakeAdvertiseID, Date ClickTime){
+        AdvertiseClick adck=new AdvertiseClick();
+        advertiseMapper.clickAdvertise(adck,UserID,TakeAdvertiseID,ClickTime);
+        return adck.getId();
+    }
+    @Override
+    public int closeAdvertise(Integer ClickID){
+        Date Time1=advertiseMapper.getClickTime(ClickID);
+        Date Time2=new Date();
+        long durationInMillis=Time2.getTime()-Time1.getTime();
+        int duration=(int)(durationInMillis/1000);
+        return advertiseMapper.setDuration(ClickID,duration);
     }
 }

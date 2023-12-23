@@ -23,6 +23,10 @@ public class TakeAdvertise {
     @Column(nullable = false)
     private int Progress;
 
+    //广告曝光次数
+    @Column(nullable = false)
+    private int ImpressionNum;
+
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "take_advertise_id")
     private List<AdvertiseClick> advertiseClicks = new ArrayList<>();
