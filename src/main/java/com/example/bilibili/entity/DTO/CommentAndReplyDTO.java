@@ -1,4 +1,4 @@
-package com.example.bilibili.DTO;
+package com.example.bilibili.entity.DTO;
 
 public class CommentAndReplyDTO {
     private String commentContent;

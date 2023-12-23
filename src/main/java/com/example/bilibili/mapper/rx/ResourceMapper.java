@@ -1,11 +1,7 @@
 package com.example.bilibili.mapper.rx;
 
-import com.example.bilibili.entity.Resource;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.SelectKey;
-
-import java.util.Date;
 
 @Mapper
 public interface ResourceMapper {
