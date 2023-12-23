@@ -17,6 +17,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/UserController")
+@CrossOrigin
 public class UserController {
     @GetMapping("/userLogin")
     public Map<String, Object> userLogin(String name, String password,
@@ -70,11 +71,10 @@ public class UserController {
             oneUser.put("username", user_name);
             result.add(oneUser);
         }
-
         return result;
     }
 
-    @PostMapping("/updatePassword")
+    @GetMapping("/updatePassword")
     public String updatePassword(String username, String oldPassword, String newPassword){
         int result = userService.updatePassword(username, oldPassword, newPassword);
         if (result == 1){
