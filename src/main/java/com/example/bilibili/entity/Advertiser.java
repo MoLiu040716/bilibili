@@ -22,6 +22,12 @@ public class Advertiser {
     //注销时间
     private Date DeleteTime;
 
+    //用户当前状态->0已注销；1正常；2状态异常
+    @Column(nullable = false)
+    private int AccountStatus;
+
+    private Date RecoveryTime;
+
     private String UserName;
 
     private String Email;

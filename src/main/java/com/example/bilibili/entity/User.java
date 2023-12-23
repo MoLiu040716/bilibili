@@ -37,6 +37,8 @@ public class User {
     @Column(nullable = false)
     private int AccountStatus;
 
+    private Date RecoveryTime;
+
     private Date Birthday;
 
     private int Sex;
