@@ -17,4 +17,7 @@ public interface UserMapper {
 
     @Update("UPDATE user SET account_status = 1, recovery_time = null WHERE id = #{id}")
     public int updateUserStatus(Integer id);
+
+    @Update("UPDATE user SET password = #{newPassword} WHERE user_name = #{username} AND password = #{oldPassword}")
+    public int updatePassword(String username, String oldPassword, String newPassword);
 }
