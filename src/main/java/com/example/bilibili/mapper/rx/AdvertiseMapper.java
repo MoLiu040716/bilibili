@@ -13,9 +13,10 @@ import java.util.Map;
 @Mapper
 public interface AdvertiseMapper {
     @Insert("INSERT INTO advertising_position (begin_time, end_time, introduction," +
+            "process,reward, title,advertiser_id )" +
             "process,reward, title,advertiser_id,show_num )" +
             "VALUES (#{BeginTime}, #{EndTime}, #{Introduction}, " +
-            "#{Process},#{Reward},#{Title},#{advertiser_id},0) ")
+            "#{Process},#{Reward},#{Title},#{advertiser_id}) ")
     int uploadAdvertise(Date BeginTime,Date EndTime,String Introduction,Integer Process,
                         Double Reward,String Title,Integer advertiser_id);
 

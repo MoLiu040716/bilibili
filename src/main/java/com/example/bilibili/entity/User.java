@@ -1,19 +1,22 @@
 package com.example.bilibili.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.File;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-@Data
+
+@Getter
+@Setter
 @Entity
 public class User {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     //用户名，可为空
     private String UserName;
@@ -38,6 +41,8 @@ public class User {
     @Column(nullable = false)
     private int AccountStatus;
 
+    private Timestamp RecoveryTime;
+
     private Date Birthday;
 
     private int Sex;
@@ -48,8 +53,6 @@ public class User {
     //用户关注人数
     @Column(nullable = false)
     private int AttentionNum;
-
-    private Timestamp RecoveryTime;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")

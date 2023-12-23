@@ -1,12 +1,13 @@
 package com.example.bilibili.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
-
+import lombok.Getter;
+import lombok.Setter;
 import java.util.Date;
 
 //弹幕表
-@Data
+@Getter
+@Setter
 @Entity
 public class BulletComments {
     @Id

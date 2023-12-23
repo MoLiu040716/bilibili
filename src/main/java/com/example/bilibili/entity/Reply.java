@@ -3,9 +3,6 @@ package com.example.bilibili.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.List;
-
 //回复表
 @Data
 @Entity

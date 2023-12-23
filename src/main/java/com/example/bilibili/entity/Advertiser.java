@@ -23,14 +23,18 @@ public class Advertiser {
     //注销时间
     private Date DeleteTime;
 
+    //用户当前状态->0已注销；1正常；2状态异常
+    @Column(nullable = false)
+    private int AccountStatus;
+
+    private Timestamp RecoveryTime;
+
     private String UserName;
 
     private String Email;
 
     @Column(nullable = false)
     private String Password;
-
-    private Timestamp RecoveryTime;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "advertiser_id")
