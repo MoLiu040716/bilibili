@@ -14,18 +14,6 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-    @PostMapping("/updatePassword")
-    public String updatePassword(String username, String oldPassword, String newPassword){
-        int result = adminService.updatePassword(username, oldPassword, newPassword);
-        if (result == 1){
-            return "密码更新成功";
-        } else if (result == 0){
-            return "密码更新失败";
-        } else {
-            return "发生错误！";
-        }
-    }
-
     @PostMapping("/examineReportByReportIdAndManagerId")
     public String examineReportByReportIdAndManagerId(Integer ManagerId, Integer ReportId, String remark, Integer result){
         int res = adminService.examineReportByReportIdAndManagerId(ManagerId, ReportId, remark, result);
@@ -53,6 +41,16 @@ public class AdminController {
             return "账号冻结成功，解冻时间为" + recoveryTime;
         } else {
             return "账号冻结失败";
+        }
+    }
+
+    @PostMapping("/resetPassword")
+    public String resetPassword(Integer userId, String newPassword){
+        int result = adminService.resetPassword(userId, newPassword);
+        if (result == 1){
+            return "密码重置成功";
+        } else {
+            return "密码重置失败";
         }
     }
 }

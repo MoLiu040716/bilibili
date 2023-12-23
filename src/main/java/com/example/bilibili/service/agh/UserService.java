@@ -11,4 +11,6 @@ public interface UserService {
     public List<User> getAllUsers();
 
     public int updateUserStatus(Integer id);
+
+    public int updatePassword(String username, String oldPassword, String newPassword);
 }

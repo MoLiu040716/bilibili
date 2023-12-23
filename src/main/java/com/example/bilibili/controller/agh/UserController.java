@@ -73,4 +73,16 @@ public class UserController {
 
         return result;
     }
+
+    @PostMapping("/updatePassword")
+    public String updatePassword(String username, String oldPassword, String newPassword){
+        int result = userService.updatePassword(username, oldPassword, newPassword);
+        if (result == 1){
+            return "密码更新成功";
+        } else if (result == 0){
+            return "密码更新失败";
+        } else {
+            return "发生错误！";
+        }
+    }
 }
