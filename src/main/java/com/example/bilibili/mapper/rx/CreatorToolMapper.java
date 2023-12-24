@@ -24,7 +24,6 @@ public interface CreatorToolMapper {
             "FROM take_advertise t1 " +
             "JOIN advertising_position t2 ON t1.position_id = t2.id " +
             "JOIN advertiser t3 ON t2.advertiser_id = t3.id " +
-            "JOIN advertise_click t4 ON t4.take_advertise_id = t1.id " +
             "WHERE t1.id=#{TakeAdId}")
     List<Map<String,Object>> setAdvertise(Integer TakeAdId);
 
