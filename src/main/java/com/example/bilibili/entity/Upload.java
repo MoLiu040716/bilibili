@@ -39,7 +39,7 @@ public class Upload {
     private String Phone;
 
     @Column(nullable = false)
-    private String EMail;
+    private String EMailAddress;
 
     //被关注数（粉丝数）
     @Column(nullable = false)
@@ -64,4 +64,8 @@ public class Upload {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "upload_id")
     private List<TakeAdvertise> takeAdvertises = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "upload_id")
+    private List<Email> emails = new ArrayList<>();
 }

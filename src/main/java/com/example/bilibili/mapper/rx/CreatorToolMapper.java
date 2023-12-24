@@ -24,8 +24,7 @@ public interface CreatorToolMapper {
             "FROM take_advertise t1 " +
             "JOIN advertising_position t2 ON t1.position_id = t2.id " +
             "JOIN advertiser t3 ON t2.advertiser_id = t3.id " +
-            "JOIN advertise_click t4 ON t4.take_advertise_id = t1.id " +
-            "WHERE t1.id=8")
+            "WHERE t1.id=#{TakeAdId}")
     List<Map<String,Object>> setAdvertise(Integer TakeAdId);
 
     @Update("UPDATE take_advertise SET impression_num=impression_num+1 WHERE id=#{TakeAdId}")
@@ -37,4 +36,7 @@ public interface CreatorToolMapper {
             "FROM advertise_click " +
             "WHERE take_advertise_id = #{TakeAdId}")
     int getClickNum(Integer TakeAdId);
+
+    @Select("SELECT id,position_id FROM take_advertise WHERE upload_id=#{UploadID}")
+    List<Map<String,Object>> getAllAds(Integer UploadID);
 }
