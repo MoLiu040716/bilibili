@@ -1,6 +1,7 @@
 package com.example.bilibili.service.agh;
 
 import com.example.bilibili.entity.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -13,4 +14,8 @@ public interface UserService {
     public int updateUserStatus(Integer id);
 
     public int updatePassword(String username, String oldPassword, String newPassword);
+
+    public String getUserRoleInfo(String principal);
+
+    public List<String> getUserPermissionInfo(String role);
 }

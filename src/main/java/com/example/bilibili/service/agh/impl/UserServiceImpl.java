@@ -42,4 +42,14 @@ public class UserServiceImpl implements UserService {
         SimpleHash simpleHash = new SimpleHash("MD5", password, "salt", 3);
         return simpleHash.toString();
     }
+
+    @Override
+    public String getUserRoleInfo(String principal) {
+        return userMapper.getUserRoleInfo(principal);
+    }
+
+    @Override
+    public List<String> getUserPermissionInfo(String role) {
+        return userMapper.getUserPermissionInfo(role);
+    }
 }
