@@ -1,12 +1,12 @@
 package com.example.bilibili;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 //token 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
 @SpringBootApplication
-@MapperScan("com.example.bilibili.mapper.cj")
+@EnableScheduling
 public class BilibiliApplication {
 
     public static void main(String[] args) {
