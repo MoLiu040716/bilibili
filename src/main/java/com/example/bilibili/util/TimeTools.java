@@ -40,6 +40,10 @@ public class TimeTools {
     }
 
     public static String firstProgressForDate(String dateString) {
+        String[] parts = dateString.split("\\s+");
+        if (parts.length >= 6) {
+            dateString = String.join(" ", parts[0], parts[1], parts[2], parts[3], parts[4], parts[5]);
+        }
         SimpleDateFormat inputFormat = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss", Locale.ENGLISH);
         SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
