@@ -8,8 +8,8 @@ import java.util.Locale;
 public class TimeTools {
     public static int getActivityProcess(String BeginTime, String EndTime) throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        BeginTime=TimeTools.firstProgressForDate(BeginTime);
-        EndTime=TimeTools.firstProgressForDate(EndTime);
+//        BeginTime=TimeTools.firstProgressForDate(BeginTime);
+//        EndTime=TimeTools.firstProgressForDate(EndTime);
         Date bgTime = dateFormat.parse(BeginTime);
         Date edTime = dateFormat.parse(EndTime);
 
@@ -39,21 +39,21 @@ public class TimeTools {
         }
     }
 
-    public static String firstProgressForDate(String dateString) {
-        String[] parts = dateString.split("\\s+");
-        if (parts.length >= 6) {
-            dateString = String.join(" ", parts[0], parts[1], parts[2], parts[3], parts[4], parts[5]);
-        }
-        SimpleDateFormat inputFormat = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss", Locale.ENGLISH);
-        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-
-        try {
-            Date date = inputFormat.parse(dateString);
-            return outputFormat.format(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            // 处理解析异常
-        }
-        return ""; // 如果发生异常，返回空字符串或者其他默认值
-    }
+//    public static String firstProgressForDate(String dateString) {
+//        String[] parts = dateString.split("\\s+");
+//        if (parts.length >= 6) {
+//            dateString = String.join(" ", parts[0], parts[1], parts[2], parts[3], parts[4], parts[5]);
+//        }
+//        SimpleDateFormat inputFormat = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss", Locale.ENGLISH);
+//        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+//
+//        try {
+//            Date date = inputFormat.parse(dateString);
+//            return outputFormat.format(date);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//            // 处理解析异常
+//        }
+//        return ""; // 如果发生异常，返回空字符串或者其他默认值
+//    }
 }
