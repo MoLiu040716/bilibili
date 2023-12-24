@@ -115,7 +115,7 @@ public class UserController {
         try {
             // 检查是否有 "color" 权限
             SecurityUtils.getSubject().checkPermission("color");
-            return "评论弹幕颜色配置权限等";
+            return "您享有评论弹幕颜色配置权限";
         } catch (UnauthorizedException e) {
             throw new AuthorizationException("没有相关权限");
         }
