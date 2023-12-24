@@ -31,7 +31,7 @@ public class Advertiser {
 
     private String UserName;
 
-    private String Email;
+    private String EMailAddress;
 
     @Column(nullable = false)
     private String Password;
@@ -39,4 +39,9 @@ public class Advertiser {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "advertiser_id")
     private List<AdvertisingPosition> advertisingPositions = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "advertiser_id")
+    private List<Email> emails = new ArrayList<>();
+
 }

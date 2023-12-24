@@ -10,6 +10,7 @@ import java.util.Date;
 @Data
 public class Email {
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 
     //邮件标题
@@ -22,7 +23,7 @@ public class Email {
     @Column(nullable = false)
     private Date SendTime;
 
-    //状态：已读、已发送（但未读）、已撤回（未读邮件才能撤回）
+    //发送状态：0表示由创作者发给广告主，1表示由广告主发给创作者
     @Column(nullable = false)
     private int Status;
 
