@@ -9,7 +9,8 @@ import java.util.Map;
 
 public interface AdvertiseService {
     public int uploadAdvertise(AdvertisingPosition advertise);
-    public List<Map<String, Object>> getAdvertise(Integer ad_id);
+    public List<Map<String, Object>> getAdvertise();
     public int clickAdvertise( Integer UserID, Integer TakeAdvertiseID, Date ClickTime);
     public int closeAdvertise(Integer ClickID);
+    public List<Map<String,Object>> getAllImpressionData(Integer AdPositionId);
 }

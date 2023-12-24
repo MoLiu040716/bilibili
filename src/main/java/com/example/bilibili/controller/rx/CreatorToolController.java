@@ -30,4 +30,15 @@ public class CreatorToolController {
         creatorToolService.takeAdvertise(tk,UploadID,PositionID,get_progress);
         return tk.getId();
     }
+    @GetMapping("/setAdvertise")
+    @ResponseBody
+    public List<Map<String,Object>> setAdvertise(@RequestParam Integer TakeAdId){
+        return creatorToolService.setAdvertise(TakeAdId);
+    }
+
+    @GetMapping("/getAdConversionRate")
+    @ResponseBody
+    public Double getAdConversionRate(@RequestParam Integer TakeAdId){
+        return creatorToolService.getAdConversionRate(TakeAdId);
+    }
 }

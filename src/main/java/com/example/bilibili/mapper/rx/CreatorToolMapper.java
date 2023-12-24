@@ -2,11 +2,7 @@ package com.example.bilibili.mapper.rx;
 
 import com.example.bilibili.entity.DTO.TimeRange;
 import com.example.bilibili.entity.TakeAdvertise;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.Date;
 import java.util.List;
@@ -28,9 +24,17 @@ public interface CreatorToolMapper {
             "FROM take_advertise t1 " +
             "JOIN advertising_position t2 ON t1.position_id = t2.id " +
             "JOIN advertiser t3 ON t2.advertiser_id = t3.id " +
-            "WHERE id=#{TakeAdId};")
+            "JOIN advertise_click t4 ON t4.take_advertise_id = t1.id " +
+            "WHERE t1.id=8")
     List<Map<String,Object>> setAdvertise(Integer TakeAdId);
 
-    //按id统计次数
+    @Update("UPDATE take_advertise SET impression_num=impression_num+1 WHERE id=#{TakeAdId}")
+    int addImpressionNum(Integer TakeAdId);
+
+    @Select("SELECT impression_num FROM take_advertise WHERE id=#{TakeAdId}")
+    int getImpressionNum(Integer TakeAdId);
+    @Select("SELECT COUNT(*) AS ClickNum " +
+            "FROM advertise_click " +
+            "WHERE take_advertise_id = #{TakeAdId}")
     int getClickNum(Integer TakeAdId);
 }

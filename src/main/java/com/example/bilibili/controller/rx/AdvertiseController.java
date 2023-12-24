@@ -49,8 +49,8 @@ public class AdvertiseController {
 
     @GetMapping("/getAdvertiseForUploaders")
     @ResponseBody
-    public List<Map<String, Object>> getAdvertiseForUploaders(@RequestParam Integer ad_id){
-        return advertiseService.getAdvertise(ad_id);
+    public List<Map<String, Object>> getAdvertiseForUploaders(){
+        return advertiseService.getAdvertise();
     }
     @GetMapping("/clickAdvertise")
     @ResponseBody
@@ -61,7 +61,12 @@ public class AdvertiseController {
     }
     @GetMapping("/closeAdvertise")
     @ResponseBody
-    public int closeAdvertise(Integer ClickID){
+    public int closeAdvertise(@RequestParam Integer ClickID){
         return advertiseService.closeAdvertise(ClickID);
+    }
+    @GetMapping("/getAllImpressionData")
+    @ResponseBody
+    public List<Map<String,Object>> getAllImpressionData(@RequestParam Integer AdPositionId){
+        return advertiseService.getAllImpressionData(AdPositionId);
     }
 }

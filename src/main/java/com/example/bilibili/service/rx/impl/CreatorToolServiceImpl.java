@@ -34,4 +34,21 @@ public class CreatorToolServiceImpl implements CreatorToolService {
         TimeRange BETime=creatorToolMapper.getBeginAndEndTime(ad_id);
         return TimeTools.getActivityProcess(BETime.getBeginTime(),BETime.getEndTime());
     }
+
+    @Override
+    public List<Map<String,Object>> setAdvertise(Integer TakeAdId){
+        creatorToolMapper.addImpressionNum(TakeAdId);
+        return creatorToolMapper.setAdvertise(TakeAdId);
+    }
+
+    @Override
+    public Double getAdConversionRate(Integer TakeAdId){
+        int ImpressionNum=creatorToolMapper.getImpressionNum(TakeAdId);
+        int ClickNum=creatorToolMapper.getClickNum(TakeAdId);
+        if(ImpressionNum == 0 || ClickNum == 0){
+            return 0.0;
+        }else{
+            return ClickNum*1.0/ImpressionNum;
+        }
+    }
 }
