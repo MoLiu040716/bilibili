@@ -41,4 +41,10 @@ public class CreatorToolController {
     public Double getAdConversionRate(@RequestParam Integer TakeAdId){
         return creatorToolService.getAdConversionRate(TakeAdId);
     }
+
+    @GetMapping("/getAllAds")
+    @ResponseBody
+    public List<Map<String,Object>> getAllAds(Integer UploadID){
+        return creatorToolService.getAllAds(UploadID);
+    }
 }

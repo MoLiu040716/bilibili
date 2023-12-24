@@ -37,4 +37,7 @@ public interface CreatorToolMapper {
             "FROM advertise_click " +
             "WHERE take_advertise_id = #{TakeAdId}")
     int getClickNum(Integer TakeAdId);
+
+    @Select("SELECT id,position_id FROM take_advertise WHERE upload_id=#{UploadID}")
+    List<Map<String,Object>> getAllAds(Integer UploadID);
 }

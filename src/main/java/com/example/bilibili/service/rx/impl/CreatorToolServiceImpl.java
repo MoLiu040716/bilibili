@@ -51,4 +51,8 @@ public class CreatorToolServiceImpl implements CreatorToolService {
             return ClickNum*1.0/ImpressionNum;
         }
     }
+    @Override
+    public List<Map<String,Object>> getAllAds(Integer UploadID){
+        return creatorToolMapper.getAllAds(UploadID);
+    }
 }
