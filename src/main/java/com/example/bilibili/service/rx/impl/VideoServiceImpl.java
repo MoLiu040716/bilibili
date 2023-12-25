@@ -23,7 +23,7 @@ public class VideoServiceImpl implements VideoService {
         String formattedTime = dateFormat.format(uploadTime);
         return videoMapper.uploadVideo(formattedTime,formattedTime,
                 video.getURL(),video.getTitle(),video.getIntroduction(),
-                video.getFileSize(),video.getFileType(),video.getUploaderName(),
+                video.getFileSize(),video.getFileType(),
                 video.getDuration(),uploaderID);
     }
 

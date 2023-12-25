@@ -32,8 +32,7 @@ public class VideoController {
     public String uploadVideo(@RequestParam("file") MultipartFile file,
                                @RequestParam String title,
                                @RequestParam String description,
-                               @RequestParam Integer creatorID,
-                               @RequestParam String creatorName) throws Exception{
+                               @RequestParam Integer creatorID) throws Exception{
         System.out.println(file.getClass());
         System.out.println(title);
         Resource video=new Resource();
@@ -50,12 +49,6 @@ public class VideoController {
         video.setURL(outputURL);
         video.setIntroduction(description);
         video.setFileSize(size);
-        Upload up=new Upload();
-        User u=new User();
-        up.setId(creatorID);
-        up.setUserName(creatorName);
-        video.setUpload(up);
-        video.setUploaderName(creatorName);
         video.setFileType("mp4");
 
 
