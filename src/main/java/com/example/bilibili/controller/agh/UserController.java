@@ -8,6 +8,7 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.apache.shiro.authz.AuthorizationException;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -88,8 +89,13 @@ public class UserController {
         }
     }
 
+    @RequiresPermissions("HD")
     @RequestMapping("/videoHD")
     public String videoHD() {
+        if (!SecurityUtils.getSubject().isAuthenticated()) {
+            // 用户未登录，需要重定向到登录页面
+            return "请先登录";
+        }
         try {
             // 检查是否有 "HD" 权限
             SecurityUtils.getSubject().checkPermission("HD");
@@ -99,8 +105,13 @@ public class UserController {
         }
     }
 
+    @RequiresPermissions("Ad free")
     @RequestMapping("/AdFree")
     public String AdFree() {
+        if (!SecurityUtils.getSubject().isAuthenticated()) {
+            // 用户未登录，需要重定向到登录页面
+            return "请先登录";
+        }
         try {
             // 检查是否有 "Ad free" 权限
             SecurityUtils.getSubject().checkPermission("Ad free");
@@ -110,8 +121,13 @@ public class UserController {
         }
     }
 
+    @RequiresPermissions("color")
     @RequestMapping("/commentColor")
     public String commentColor() {
+        if (!SecurityUtils.getSubject().isAuthenticated()) {
+            // 用户未登录，需要重定向到登录页面
+            return "请先登录";
+        }
         try {
             // 检查是否有 "color" 权限
             SecurityUtils.getSubject().checkPermission("color");
