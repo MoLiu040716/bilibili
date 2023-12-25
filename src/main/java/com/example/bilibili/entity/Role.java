@@ -23,7 +23,6 @@ public class Role {
     @Column(nullable = false)
     private Date CreatTime;
 
-    @Column(nullable = false)
     private Date DeleteTime;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

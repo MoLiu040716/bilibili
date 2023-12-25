@@ -6,6 +6,8 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.UnauthorizedException;
+import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -85,4 +87,38 @@ public class UserController {
             return "发生错误！";
         }
     }
+
+    @RequestMapping("/videoHD")
+    public String videoHD() {
+        try {
+            // 检查是否有 "HD" 权限
+            SecurityUtils.getSubject().checkPermission("HD");
+            return "您享有高清版本视频观看权限";
+        } catch (UnauthorizedException e) {
+            throw new AuthorizationException("没有相关权限");
+        }
+    }
+
+    @RequestMapping("/AdFree")
+    public String AdFree() {
+        try {
+            // 检查是否有 "Ad free" 权限
+            SecurityUtils.getSubject().checkPermission("Ad free");
+            return "您享有免广告权限";
+        } catch (UnauthorizedException e) {
+            throw new AuthorizationException("没有相关权限");
+        }
+    }
+
+    @RequestMapping("/commentColor")
+    public String commentColor() {
+        try {
+            // 检查是否有 "color" 权限
+            SecurityUtils.getSubject().checkPermission("color");
+            return "您享有评论弹幕颜色配置权限";
+        } catch (UnauthorizedException e) {
+            throw new AuthorizationException("没有相关权限");
+        }
+    }
+
 }
