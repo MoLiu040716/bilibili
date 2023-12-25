@@ -1,15 +1,15 @@
 package com.example.bilibili.mapper.agh;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.bilibili.entity.User;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
+import java.io.File;
+import java.io.Serializable;
 import java.util.List;
 
 @Mapper
-public interface UserMapper {
+public interface UserMapper extends BaseMapper<User> {
     @Select("select * from user where user_name=#{name}")
     public User getUserInfoByName(String name);
 
@@ -25,10 +25,38 @@ public interface UserMapper {
     @Select("SELECT name FROM role WHERE id IN (" +
             "SELECT role_id FROM role_association WHERE target_type = 0 AND targetid IN (" +
             "SELECT id FROM user WHERE user_name = #{principal}))")
-    public String getUserRoleInfo(@Param("principal")String principal);
+    public String getUserRoleInfo(@Param("principal") String principal);
 
     @Select("SELECT name FROM authorization WHERE id IN (" +
             "SELECT authorization_id FROM role_authorization WHERE role_id IN (" +
             "SELECT id FROM role WHERE role.name = #{role}))")
     public List<String> getUserPermissionInfo(String role);
+
+    @Select("SELECT * FROM user WHERE user_name=#{userName}")
+    User selectUserByUserName(@Param("userName") String userName);
+
+    @Select("SELECT * FROM user WHERE email=#{email}")
+    User selectUserByEmail(@Param("email") String email);
+
+    @Select("SELECT * FROM user WHERE phone=#{phone}")
+    User selectUserPhone(@Param("phone") String phone);
+
+    @Override
+    int insert(User user);
+
+
+
+    @Update("UPDATE  user SET profile_photo = #{profile_photo} WHERE id = #{id}")
+    int updateAvatar(
+            @Param("id") int id,
+            @Param("profile_photo") String profile_photo
+    );
+
+
+//    @Update("UPDATE  user SET profile_photo = #{} WHERE id = #{id}")
+//    int updateUserInfoById(
+//            @Param("id") int id,
+//            @Param("profile_photo") String profile_photo
+//    );
+
 }

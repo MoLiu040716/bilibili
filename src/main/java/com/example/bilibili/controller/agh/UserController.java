@@ -1,7 +1,9 @@
 package com.example.bilibili.controller.agh;
 
+import com.example.bilibili.entity.Request.UserUpdateRequest;
 import com.example.bilibili.entity.User;
 import com.example.bilibili.service.agh.UserService;
+import com.example.bilibili.util.CommonResult;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -12,11 +14,12 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.*;
 
 @RestController
 @RequestMapping("/UserController")
@@ -78,11 +81,11 @@ public class UserController {
     }
 
     @GetMapping("/updatePassword")
-    public String updatePassword(String username, String oldPassword, String newPassword){
+    public String updatePassword(String username, String oldPassword, String newPassword) {
         int result = userService.updatePassword(username, oldPassword, newPassword);
-        if (result == 1){
+        if (result == 1) {
             return "密码更新成功";
-        } else if (result == 0){
+        } else if (result == 0) {
             return "密码更新失败";
         } else {
             return "发生错误！";
@@ -136,5 +139,79 @@ public class UserController {
             throw new AuthorizationException("没有相关权限");
         }
     }
+
+    @RequestMapping("/register")
+    public CommonResult<String> register(@RequestParam String phone,
+                                         @RequestParam String email,
+                                         @RequestParam String userName,
+                                         @RequestParam String password) {
+        boolean success = userService.register(phone, email, password, userName);
+
+        if (success) {
+            return CommonResult.success("注册成功");
+        } else {
+            return CommonResult.error("注册失败");
+        }
+    }
+
+    @RequestMapping("/changeAvatar")
+    public CommonResult<String> upload(@RequestParam("id") int id,
+                                       @RequestParam("avtar") MultipartFile photo) {
+
+        // 判断文件是否为空
+        if (photo.isEmpty()) {
+            return CommonResult.error("上传失败，请选择文件");
+        }
+        byte[] imageArr = new byte[0];
+        try {
+            imageArr = photo.getBytes();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        String imageAsString = Base64.getEncoder().encodeToString(imageArr);
+        userService.updateAvatarById(id, imageAsString);
+        return CommonResult.success("上传成功");
+    }
+
+    @GetMapping("/getAvatar")
+    public CommonResult<String> getAvtar(@RequestParam Integer id) {
+        Boolean success = userService.getAvatarById(id);
+        if (success) {
+            return CommonResult.success("获取成功");
+        } else {
+            return CommonResult.error("获取失败");
+        }
+    }
+
+    @PostMapping("/edit")
+    public CommonResult<String> editUser(@RequestBody UserUpdateRequest request) {
+        User existingUser = userService.getUserById(request.getId());
+        if (existingUser == null) {
+            return CommonResult.error("用户信息不存在");
+        }
+        if (request.getBirthday() != null) {
+            existingUser.setBirthday(request.getBirthday());
+        }
+        if (request.getEmail() != null) {
+            existingUser.setEmail(request.getEmail());
+        }
+        if (request.getPhone() != null) {
+            existingUser.setPhone(request.getPhone());
+        }
+        if (request.getSex() != null) {
+            existingUser.setSex(request.getSex());
+        }
+        if (request.getUsername() != null) {
+            existingUser.setUserName(request.getUsername());
+        }
+        if (userService.updateUser(existingUser)) {
+
+            return CommonResult.success("修改成功");
+        }else {
+            return CommonResult.error("修改失败");
+        }
+    }
+
 
 }
