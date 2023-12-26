@@ -13,39 +13,40 @@ import java.util.List;
 @Entity
 public class Upload {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     //注册时间
     @Column(nullable = false)
-    private Date CreatTime;
+    private Date creatTime;
 
     //注销时间
-    private Date DeleteTime;
+    private Date deleteTime;
 
     //用户当前状态->0已注销；1正常；2状态异常
     @Column(nullable = false)
-    private int AccountStatus;
+    private int accountStatus;
 
-    private Timestamp RecoveryTime;
-
-    @Column(nullable = false)
-    private String UserName;
+    private Timestamp recoveryTime;
 
     @Column(nullable = false)
-    private String Password;
+    private String userName;
 
     @Column(nullable = false)
-    private String Phone;
+    private String password;
 
     @Column(nullable = false)
-    private String EMailAddress;
+    private String phone;
+
+    @Column(nullable = false)
+    private String emailAddress;
 
     //被关注数（粉丝数）
     @Column(nullable = false)
-    private int FansNum;
+    private int fansNum;
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "upload_id")
     private List<Resource> ResourceList = new ArrayList<>();
 

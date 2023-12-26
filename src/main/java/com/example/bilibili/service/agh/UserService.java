@@ -2,7 +2,6 @@ package com.example.bilibili.service.agh;
 
 import com.example.bilibili.entity.User;
 
-import java.util.Date;
 import java.util.List;
 
 public interface UserService {

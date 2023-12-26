@@ -15,6 +15,7 @@ public class Resource {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 
+
     @Column(nullable = false)
     private Date CreatTime;
 
@@ -25,7 +26,7 @@ public class Resource {
 
     //存储在某个文件夹中，需要某个URL对应
     @Column(nullable = false)
-    private String URL;
+    private String url;
 
     @Column(nullable = false)
     private String Title;
