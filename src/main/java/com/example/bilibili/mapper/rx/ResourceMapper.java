@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
-import java.io.Serializable;
+
 
 @Mapper
 public interface ResourceMapper extends BaseMapper<Resource> {
@@ -24,5 +24,4 @@ public interface ResourceMapper extends BaseMapper<Resource> {
 
     @Select("SELECT * FROM resource WHERE id =#{id}")
     Resource selectById(int id);
-
 }
