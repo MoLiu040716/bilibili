@@ -4,6 +4,7 @@ import com.example.bilibili.entity.User;
 import com.example.bilibili.mapper.agh.UserMapper;
 import com.example.bilibili.service.agh.UserService;
 import com.example.bilibili.util.BusinessException;
+import com.example.bilibili.util.ShiroMD5;
 import jakarta.transaction.Transactional;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.crypto.hash.SimpleHash;
@@ -67,7 +68,7 @@ public class UserServiceImpl implements UserService {
         user.setCreatTime(new Date());
         user.setEmail(email);
         user.setUserName(userName);
-        user.setPassword(String.valueOf(new Md5Hash(password)));
+        user.setPassword(String.valueOf(ShiroMD5(password)));
         user.setCreatTime(new Date());
         user.setAccountStatus(1);
         if (userMapper.selectUserByUserName(user.getUserName()) != null) {

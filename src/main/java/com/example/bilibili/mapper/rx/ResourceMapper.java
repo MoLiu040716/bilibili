@@ -12,7 +12,7 @@ import java.util.List;
 
 @Mapper
 public interface ResourceMapper extends BaseMapper<Resource> {
-    @Insert("INSERT INTO Resource (create_time, update_time, URL, " +
+    @Insert("INSERT INTO Resource (creat_time, update_time, URL, " +
             "title, introduction, file_size, file_type, uploader_name,upload_id" +
             ",duration,bullet_comment_num,collection_num,like_num,view_count) " +
             "VALUES (#{CreatTime}, #{UpdateTime}, #{URL}," +
