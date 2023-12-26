@@ -78,7 +78,7 @@ public class VideoController {
     public String displayMp4(@RequestParam("upload_id") int id) {
         String filePath = videoService.getUrlById(id);
         if (filePath == null) {
-            throw new BusinessException( "文件不存在");
+            throw new BusinessException("文件不存在");
         }
         return filePath;
     }

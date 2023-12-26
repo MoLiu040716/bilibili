@@ -40,7 +40,7 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     public List<Resource> findAll(int id) {
-        List<Resource> resourceList = videoMapper.selectAllResource();
+        List<Resource> resourceList = videoMapper.selectAllResource(id);
         if (resourceList==null){
             return null;
         }

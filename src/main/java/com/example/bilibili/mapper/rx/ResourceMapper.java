@@ -27,6 +27,6 @@ public interface ResourceMapper extends BaseMapper<Resource> {
     @Select("SELECT * FROM resource WHERE upload_id =#{id}")
     Resource selectById(int id);
 
-    @Select("SELECT * FROM resource")
-    List<Resource> selectAllResource();
+    @Select("SELECT * FROM resource WHERE upload_id =#{id}")
+    List<Resource> selectAllResource(int id);
 }
