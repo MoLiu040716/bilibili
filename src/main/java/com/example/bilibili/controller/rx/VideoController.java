@@ -43,10 +43,10 @@ public class VideoController {
         System.out.println(file.getClass());
         System.out.println(title);
         Resource video = new Resource();
-        String path = "D:\\VIDEO";
+        String path = "D:\\bilibili_vue\\bilibili-vue\\src\\assets";
         String fileName = file.getOriginalFilename();
         String URL = path + "\\" + fileName;
-        String outputURL = path + "\\output\\" + fileName.substring(0, fileName.lastIndexOf(".")) + ".mp4";
+        String outputURL = path + "\\videos\\" + fileName.substring(0, fileName.lastIndexOf(".")) + ".mp4";
         Time uploadTime = new Time(System.currentTimeMillis());
         Integer size = Math.toIntExact(file.getSize());//存储的视频最大为2GB！！！！！！
 
@@ -75,15 +75,15 @@ public class VideoController {
     }
 
     @RequestMapping("/displayUrl")
-    public String displayMp4(@RequestParam("upload_id") int id) {
+    public String displayMp4(@RequestParam("id") int id) {
         String filePath = videoService.getUrlById(id);
-        if (filePath == null) {
-            throw new BusinessException("文件不存在");
+        if(filePath == null){
+            return "文件不存在";
         }
         return filePath;
     }
 
-    @RequestMapping("/listAll")
+    @RequestMapping("ListAll")
     public List<Resource> findAll(@RequestParam("upload_id") int id) {
         List<Resource> resourceList = videoService.findAll(id);
         if (resourceList == null) {
