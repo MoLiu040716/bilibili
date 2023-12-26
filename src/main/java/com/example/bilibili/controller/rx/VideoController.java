@@ -4,10 +4,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Time;
+import java.util.List;
 import java.util.Objects;
 
 import com.example.bilibili.entity.Resource;
 
+import com.example.bilibili.util.BusinessException;
 import com.example.bilibili.util.CommonResult;
 import com.example.bilibili.util.VideoOperation;
 import jakarta.servlet.http.HttpServletResponse;
@@ -73,12 +75,23 @@ public class VideoController {
     }
 
     @RequestMapping("/displayUrl")
-    public String displayMp4(@RequestParam("id") int id) {
+    public String displayMp4(@RequestParam("upload_id") int id) {
         String filePath = videoService.getUrlById(id);
-        if(filePath == null){
-            return "文件不存在";
+        if (filePath == null) {
+            throw new BusinessException( "文件不存在");
         }
         return filePath;
     }
+
+    @RequestMapping("/listAll")
+    public List<Resource> findAll(@RequestParam("upload_id") int id) {
+        List<Resource> resourceList = videoService.findAll(id);
+        if (resourceList == null) {
+            throw new BusinessException("加载失败");
+        } else {
+            return resourceList;
+        }
+    }
+
 }
 

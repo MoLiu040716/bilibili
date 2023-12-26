@@ -1,11 +1,13 @@
 package com.example.bilibili.mapper.rx;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.bilibili.entity.Resource;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
 
 
 @Mapper
@@ -22,6 +24,9 @@ public interface ResourceMapper extends BaseMapper<Resource> {
                     String FileType,Integer duration,
                     Integer uploaderID);
 
-    @Select("SELECT * FROM resource WHERE id =#{id}")
+    @Select("SELECT * FROM resource WHERE upload_id =#{id}")
     Resource selectById(int id);
+
+    @Select("SELECT * FROM resource")
+    List<Resource> selectAllResource();
 }
