@@ -1,5 +1,7 @@
 package com.example.bilibili.controller.agh;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
 import com.example.bilibili.entity.User;
 import com.example.bilibili.service.agh.UserService;
 import org.apache.shiro.SecurityUtils;
@@ -7,30 +9,25 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.UnauthorizedException;
-import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/UserController")
 @CrossOrigin
 public class UserController {
     @GetMapping("/userLogin")
-    public Map<String, Object> userLogin(String name, String password,
-                                         @RequestParam(defaultValue = "false") boolean rememberMe) {
+    public Map<String, Object> userLogin(String name, String password) {
         Map<String, Object> result = new HashMap<>();
 
         // 1获取subject对象
         Subject subject = SecurityUtils.getSubject();
         // 2封装请求对象到token
-        AuthenticationToken token = new UsernamePasswordToken(name, password, rememberMe);
+        AuthenticationToken token = new UsernamePasswordToken(name, password);
         // 3调用subject的Login方法进行登录认证
         try {
             subject.login(token);
@@ -40,10 +37,15 @@ public class UserController {
                     User user = (User) principal;
                     int userId = user.getId();
                     String user_name = user.getUserName();
+                    // 在这里生成JWT Token
+                    String jwtToken = generateJwtToken(name);
 
                     // 封装用户信息到Map
                     result.put("userId", userId);
                     result.put("username", user_name);
+                    result.put("token", jwtToken);
+                    System.out.println(subject.isAuthenticated());
+                    System.out.println(subject.getPrincipal());
                     return result;
                 }
             }
@@ -55,6 +57,16 @@ public class UserController {
         }
         result.put("error", "发生错误");
         return result;
+    }
+
+    private String generateJwtToken(String username) {
+        Algorithm algorithm = Algorithm.HMAC256("175175"); // 替换为你的实际密钥
+        String jwtToken = JWT.create()
+                .withSubject(username)
+                .withExpiresAt(new Date(System.currentTimeMillis() + 3600000)) // 设置过期时间，这里设置为1小时
+                .sign(algorithm);
+
+        return jwtToken;
     }
 
     @Autowired
@@ -92,48 +104,54 @@ public class UserController {
     @RequiresPermissions("HD")
     @RequestMapping("/videoHD")
     public String videoHD() {
+        // 检查用户是否已经登录
         if (!SecurityUtils.getSubject().isAuthenticated()) {
-            // 用户未登录，需要重定向到登录页面
             return "请先登录";
         }
         try {
             // 检查是否有 "HD" 权限
             SecurityUtils.getSubject().checkPermission("HD");
+
+            // 用户已登录并且有权限
             return "您享有高清版本视频观看权限";
         } catch (UnauthorizedException e) {
-            throw new AuthorizationException("没有相关权限");
+            throw e; // 交给全局异常处理器处理
         }
     }
 
     @RequiresPermissions("Ad free")
     @RequestMapping("/AdFree")
     public String AdFree() {
+        // 检查用户是否已经登录
         if (!SecurityUtils.getSubject().isAuthenticated()) {
-            // 用户未登录，需要重定向到登录页面
             return "请先登录";
         }
         try {
-            // 检查是否有 "Ad free" 权限
+            // 检查是否有 "HD" 权限
             SecurityUtils.getSubject().checkPermission("Ad free");
+
+            // 用户已登录并且有权限
             return "您享有免广告权限";
         } catch (UnauthorizedException e) {
-            throw new AuthorizationException("没有相关权限");
+            throw e; // 交给全局异常处理器处理
         }
     }
 
     @RequiresPermissions("color")
     @RequestMapping("/commentColor")
     public String commentColor() {
+        // 检查用户是否已经登录
         if (!SecurityUtils.getSubject().isAuthenticated()) {
-            // 用户未登录，需要重定向到登录页面
             return "请先登录";
         }
         try {
-            // 检查是否有 "color" 权限
+            // 检查是否有 "HD" 权限
             SecurityUtils.getSubject().checkPermission("color");
+
+            // 用户已登录并且有权限
             return "您享有评论弹幕颜色配置权限";
         } catch (UnauthorizedException e) {
-            throw new AuthorizationException("没有相关权限");
+            throw e; // 交给全局异常处理器处理
         }
     }
 
