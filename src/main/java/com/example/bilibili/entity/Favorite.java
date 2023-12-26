@@ -14,7 +14,7 @@ public class Favorite {
     private int id;
 
     @Column(nullable = false)
-    private Date CreatTime;
+    private Date creatTime;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "resource_id")
