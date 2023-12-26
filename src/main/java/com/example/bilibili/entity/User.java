@@ -1,8 +1,7 @@
 package com.example.bilibili.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.io.File;
 import java.sql.Timestamp;
@@ -10,8 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @Entity
 public class User {
     @Id
@@ -19,66 +17,66 @@ public class User {
     private int id;
 
     //用户名，可为空
-    private String UserName;
+    private String userName;
 
     //密码
     @Column(nullable = false)
-    private String Password;
+    private String password;
 
     @Column(nullable = false, unique = true)
     private String Phone;
 
-    private String EMail;
+    private String Email;
 
     //用户注册时间
     @Column(nullable = false)
-    private Date CreatTime;
+    private Date creatTime;
 
     //用户注销时间
-    private Date DeleteTime;
+    private Date deleteTime;
 
     //用户当前状态->0已注销；1正常；2状态异常
     @Column(nullable = false)
-    private int AccountStatus;
+    private int accountStatus;
 
-    private Timestamp RecoveryTime;
+    private Timestamp recoveryTime;
 
-    private Date Birthday;
+    private String Birthday;
 
     private int Sex;
 
     //头像
-    private File ProfilePhoto;
+    private String profilePhoto;
 
     //用户关注人数
     @Column(nullable = false)
-    private int AttentionNum;
+    private int attentionNum;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private List<BrowsingHistory> browsingHistories = new ArrayList<>();
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private List<Collection> collections = new ArrayList<>();
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private List<Favorite> favorites = new ArrayList<>();
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private List<Attention> attentions = new ArrayList<>();
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private List<AdvertiseClick> advertiseClicks = new ArrayList<>();
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private List<MyLike> myLikes = new ArrayList<>();
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private List<Report> reports = new ArrayList<>();
+//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinColumn(name = "user_id")
+//    private List<BrowsingHistory> browsingHistories = new ArrayList<>();
+//
+//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinColumn(name = "user_id")
+//    private List<Collection> collections = new ArrayList<>();
+//
+//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinColumn(name = "user_id")
+//    private List<Favorite> favorites = new ArrayList<>();
+//
+//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinColumn(name = "user_id")
+//    private List<Attention> attentions = new ArrayList<>();
+//
+//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinColumn(name = "user_id")
+//    private List<AdvertiseClick> advertiseClicks = new ArrayList<>();
+//
+//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinColumn(name = "user_id")
+//    private List<MyLike> myLikes = new ArrayList<>();
+//
+//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinColumn(name = "user_id")
+//    private List<Report> reports = new ArrayList<>();
 }

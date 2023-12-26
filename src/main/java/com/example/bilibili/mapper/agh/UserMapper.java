@@ -4,8 +4,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.bilibili.entity.User;
 import org.apache.ibatis.annotations.*;
 
-import java.io.File;
-import java.io.Serializable;
 import java.util.List;
 
 @Mapper
@@ -45,7 +43,6 @@ public interface UserMapper extends BaseMapper<User> {
     int insert(User user);
 
 
-
     @Update("UPDATE  user SET profile_photo = #{profile_photo} WHERE id = #{id}")
     int updateAvatar(
             @Param("id") int id,
@@ -53,10 +50,14 @@ public interface UserMapper extends BaseMapper<User> {
     );
 
 
-//    @Update("UPDATE  user SET profile_photo = #{} WHERE id = #{id}")
-//    int updateUserInfoById(
-//            @Param("id") int id,
-//            @Param("profile_photo") String profile_photo
-//    );
+    @Update("UPDATE user SET user_name=#{user_name}, email=#{email}, phone=#{phone}, birthday=#{birthday}, sex=#{sex} WHERE id=#{id}")
+    int updateUserInfo(
+            @Param("id") int id,
+            @Param("email") String email,
+            @Param("user_name") String user_name,
+            @Param("phone") String phone,
+            @Param("birthday") String birthday,
+            @Param("sex") int sex
+    );
 
 }

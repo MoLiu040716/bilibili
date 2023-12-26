@@ -10,6 +10,8 @@ import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -86,9 +88,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Integer updateUserInfo(User user) {
-        return userMapper.deleteById(user);
+    public boolean updateUserInfoById(int id, String email, String userName, String phone, String birthday, int sex) {
+        User result = userMapper.selectById(id);
+        if (result == null || result.getAccountStatus() == 0) {
+            throw new BusinessException("用户数据不存在");
+        }
+//
+        int rows = userMapper.updateUserInfo(id, email, userName, phone,birthday, sex);
+        if (rows != 1) {
+            throw new BusinessException("更新用户信息异常");
+        }
+        if (userMapper.selectUserByUserName(result.getUserName()) != null) {
+            throw new BusinessException("用户名重复");
+        }
+        if (userMapper.selectUserByEmail(result.getEmail()) != null) {
+            throw new BusinessException("邮箱重复");
+        }
+        if (userMapper.selectUserPhone(result.getPhone()) != null) {
+            throw new BusinessException("手机号重复");
+        }
+        return true;
     }
+
 
     @Override
     public void updateAvatarById(int id, String filePhoto) {
@@ -107,7 +128,7 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.selectById(id);
         if (user == null) {
             return false;
-        } else{
+        } else {
             return true;
         }
     }

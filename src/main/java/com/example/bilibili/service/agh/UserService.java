@@ -2,6 +2,7 @@ package com.example.bilibili.service.agh;
 
 import com.example.bilibili.entity.User;
 
+import java.util.Date;
 import java.util.List;
 
 public interface UserService {
@@ -23,7 +24,7 @@ public interface UserService {
     Integer save(User user);
 
 
-    Integer updateUserInfo(User user);
+    boolean updateUserInfoById(int id, String email, String userName, String phone, String birthday, int sex);
 
 
     void updateAvatarById(int id, String filePhoto);

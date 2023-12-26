@@ -1,6 +1,5 @@
 package com.example.bilibili.controller.agh;
 
-import com.example.bilibili.entity.Request.UserUpdateRequest;
 import com.example.bilibili.entity.User;
 import com.example.bilibili.service.agh.UserService;
 import com.example.bilibili.util.CommonResult;
@@ -13,12 +12,13 @@ import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
 import java.io.IOException;
-import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @RestController
@@ -162,7 +162,7 @@ public class UserController {
         if (photo.isEmpty()) {
             return CommonResult.error("上传失败，请选择文件");
         }
-        byte[] imageArr = new byte[0];
+        byte[] imageArr;
         try {
             imageArr = photo.getBytes();
 
@@ -185,33 +185,23 @@ public class UserController {
     }
 
     @PostMapping("/edit")
-    public CommonResult<String> editUser(@RequestBody UserUpdateRequest request) {
-        User existingUser = userService.getUserById(request.getId());
+    public CommonResult<String> editUser(
+            @RequestParam int id,
+            @RequestParam String email,
+            @RequestParam String userName,
+            @RequestParam String phone,
+            @RequestParam Date birthday,
+            @RequestParam int sex) {
+        User existingUser = userService.getUserById(id);
         if (existingUser == null) {
             return CommonResult.error("用户信息不存在");
         }
-        if (request.getBirthday() != null) {
-            existingUser.setBirthday(request.getBirthday());
-        }
-        if (request.getEmail() != null) {
-            existingUser.setEmail(request.getEmail());
-        }
-        if (request.getPhone() != null) {
-            existingUser.setPhone(request.getPhone());
-        }
-        if (request.getSex() != null) {
-            existingUser.setSex(request.getSex());
-        }
-        if (request.getUsername() != null) {
-            existingUser.setUserName(request.getUsername());
-        }
-        if (userService.updateUser(existingUser)) {
-
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String birthdayFormat = simpleDateFormat.format(birthday);
+        if (userService.updateUserInfoById(id, email, userName, phone, birthdayFormat, sex)) {
             return CommonResult.success("修改成功");
-        }else {
+        } else {
             return CommonResult.error("修改失败");
         }
     }
-
-
 }
