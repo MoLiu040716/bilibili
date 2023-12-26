@@ -1,4 +1,4 @@
-package com.example.bilibili.config;
+package com.example.bilibili.util;
 
 import lombok.Data;
 
